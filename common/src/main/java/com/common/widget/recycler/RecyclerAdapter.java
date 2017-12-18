@@ -56,7 +56,7 @@ public abstract class RecyclerAdapter<Data> extends
         View root = inflater.inflate(viewType, parent, false);
         ViewHolder<Data> viewHolder = onCreateViewHolder(root, viewType);
 
-        root.setTag(R.id.tag_recycler_viewhold, viewHolder);
+        root.setTag(R.id.tag_recycler_holder, viewHolder);
         root.setOnClickListener(this);
         root.setOnLongClickListener(this);
 
@@ -117,7 +117,7 @@ public abstract class RecyclerAdapter<Data> extends
 
     @Override
     public void onClick(View view) {
-        ViewHolder mViewHolder = (ViewHolder) view.getTag(R.id.tag_recycler_viewhold);
+        ViewHolder mViewHolder = (ViewHolder) view.getTag(R.id.tag_recycler_holder);
         if (mDataList != null) {
             int pos = mViewHolder.getAdapterPosition();
             mListener.onItemClick(mViewHolder, mDataList.get(pos));
@@ -126,7 +126,7 @@ public abstract class RecyclerAdapter<Data> extends
 
     @Override
     public boolean onLongClick(View view) {
-        ViewHolder mViewHolder = (ViewHolder) view.getTag(R.id.tag_recycler_viewhold);
+        ViewHolder mViewHolder = (ViewHolder) view.getTag(R.id.tag_recycler_holder);
         if (mDataList != null) {
             int pos = mViewHolder.getAdapterPosition();
             mListener.onLongItemClick(mViewHolder, mDataList.get(pos));
