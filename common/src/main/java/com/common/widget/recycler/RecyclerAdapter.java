@@ -20,13 +20,11 @@ import butterknife.Unbinder;
  * Created by mth on 2017/5/23.
  */
 
-public abstract class RecyclerAdapter<Data> extends
-        RecyclerView.Adapter<RecyclerAdapter.ViewHolder<Data>>
-        implements View.OnClickListener, View.OnLongClickListener,
-        AdapterCallBack<Data> {
+public abstract class RecyclerAdapter<Data> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder<Data>>
+        implements View.OnClickListener, View.OnLongClickListener, AdapterCallBack<Data> {
 
     private final List<Data> mDataList;
-    private AdapterListener mListener;
+    private AdapterListener <Data> mListener;
 
 
     public RecyclerAdapter() {
@@ -114,6 +112,16 @@ public abstract class RecyclerAdapter<Data> extends
         notifyDataSetChanged();
     }
 
+    @Override
+    public void updata(Data data, ViewHolder<Data> holder) {
+        int pos = holder.getAdapterPosition();
+        if (pos >= 0) {
+            mDataList.remove(pos);
+            mDataList.add(pos, data);
+            notifyItemChanged(pos);
+        }
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -163,10 +171,23 @@ public abstract class RecyclerAdapter<Data> extends
 
         protected abstract void onBind(Data data);
 
-        public void updata(Data data) {
+        public void updateData(Data data) {
             if (mCallBack != null) {
                 mCallBack.updata(data, this);
             }
         }
     }
+
+    public static abstract class AdapterListenerlmpl<Data> implements AdapterListener<Data> {
+        @Override
+        public void onItemClick(ViewHolder holder, Data data) {
+
+        }
+
+        @Override
+        public void onLongItemClick(ViewHolder holder, Data data) {
+
+        }
+    }
+
 }

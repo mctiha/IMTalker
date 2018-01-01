@@ -1,4 +1,4 @@
-package com.italker;
+package com.italker.activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -18,11 +18,12 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.common.app.BaseActivity;
 import com.common.widget.PortraitView;
-import com.italker.fragment.ContactFragment;
-import com.italker.fragment.GroupFragment;
-import com.italker.fragment.HomeFragment;
+import com.italker.R;
+import com.italker.fragment.main.ContactFragment;
+import com.italker.fragment.main.GroupFragment;
+import com.italker.fragment.main.HomeFragment;
 import com.italker.helper.NavHelper;
-import com.italker.helper.utils.ScreenUtils;
+import com.common.tools.ScreenUtils;
 
 import java.util.Objects;
 
@@ -94,6 +95,10 @@ public class MainActivity extends BaseActivity implements
 
     }
 
+    @OnClick(R.id.im_portrait)
+    public void onPortrait(){
+        AccountActivity.show(this);
+    }
 
     @OnClick(R.id.im_search)
     public void onSearch() {

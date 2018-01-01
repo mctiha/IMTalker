@@ -5,5 +5,5 @@ package com.common.widget.recycler;
  */
 
 public interface AdapterCallBack<Data> {
-    void updata(Data data, RecyclerAdapter.ViewHolder holder);
+    void updata(Data data, RecyclerAdapter.ViewHolder<Data> holder);
 }

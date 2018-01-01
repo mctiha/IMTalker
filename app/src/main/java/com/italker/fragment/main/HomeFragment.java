@@ -1,4 +1,4 @@
-package com.italker.fragment;
+package com.italker.fragment.main;
 
 
 import android.support.v4.app.Fragment;
@@ -9,16 +9,22 @@ import com.italker.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GroupFragment extends BaseFragment{
+public class HomeFragment extends BaseFragment {
 
 
-    public GroupFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_group;
+        return R.layout.fragment_home;
     }
 
+
+    @Override
+    protected void initData() {
+        super.initData();
+
+    }
 }

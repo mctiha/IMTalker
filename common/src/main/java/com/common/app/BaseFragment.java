@@ -59,7 +59,7 @@ public abstract class BaseFragment extends Fragment {
 
 
     protected void initWidget(View view) {
-        mUnbinder =  ButterKnife.bind(view);
+        mUnbinder =  ButterKnife.bind(this, view);
     }
 
     protected void initData() {
