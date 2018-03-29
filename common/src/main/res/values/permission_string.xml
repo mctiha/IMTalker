@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rc_android.permission.CAMERA">相机</string>
+    <string name="rc_android.permission.ACCESS_FINE_LOCATION">位置信息</string>
+    <string name="rc_android.permission.ACCESS_COARSE_LOCATION">位置信息</string>
+    <string name="rc_android.permission.RECORD_AUDIO">麦克风</string>
+    <string name="rc_android.permission.READ_EXTERNAL_STORAGE">存储空间</string>
+    <string name="rc_android.permission.WRITE_EXTERNAL_STORAGE">存储空间</string>
+    <string name="rc_android.permission.WRITE_CONTACTS">手机联系人</string>
+    <string name="rc_android.permission.READ_PHONE_STATE">状态信息</string>
+
+    <string name="rc_permission_grant_needed">您需要在设置中打开权限</string>
+    <string name="rc_confirm">确认</string>
+    <string name="rc_cancel">取消</string>
+</resources>

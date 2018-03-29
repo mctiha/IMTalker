@@ -1,17 +1,28 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
-
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "27.0.2"
     defaultConfig {
-        applicationId "com.italker"
+        applicationId "net.italker.push"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //个推相关参数
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "pTT3DBVekc7VnZIM3ghP92",
+                GETUI_APP_KEY   : "jVMuhsUJYVABuotNBhcX4",
+                GETUI_APP_SECRET: "dXplkz1EQu5E9836IydAU3",
+                PACKAGE_NAME    : "net.italker.push"
+
+        ]
+
+        ndk {
+            abiFilters "x86", "x86_64", "arm64-v8a", "armeabi-v7a", 'armeabi'
+        }
     }
     buildTypes {
         release {
@@ -22,16 +33,15 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile 'junit:junit:4.12'
+
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
 
-    compile project(':common')
-
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:25.3.1'
-    testCompile 'junit:junit:4.12'
+    compile project(':factory')
 }
