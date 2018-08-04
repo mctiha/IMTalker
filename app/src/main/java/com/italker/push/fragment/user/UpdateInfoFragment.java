@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.italker.R;
 import com.italker.common.app.Application;
 import com.italker.common.app.PresenterFragment;
@@ -118,9 +119,9 @@ public class UpdateInfoFragment extends PresenterFragment<UpdateInfoContract.Pre
      */
     private void loadPortrait(Uri uri) {
         Glide.with(this)
-                .load(uri)
                 .asBitmap()
-                .centerCrop()
+                .apply(new RequestOptions().centerCrop())
+                .load(uri)
                 .into(mPortrait);
 
 

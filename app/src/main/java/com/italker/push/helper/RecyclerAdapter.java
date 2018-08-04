@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.italker.R;
 
 /**
@@ -50,9 +51,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHold
 //        holder.mView.setImageResource(mDatas.get(position));
 
         Glide.with(mContext)
-                .load(mDatas[position])
                 .asBitmap()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
+                .load(mDatas[position])
                 .into(holder.mView);
     }
 

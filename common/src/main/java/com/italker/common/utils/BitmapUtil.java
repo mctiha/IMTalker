@@ -298,8 +298,7 @@ public final class BitmapUtil {
                 return null;
 
             // Get the bitmap format
-            Bitmap.CompressFormat compressFormat = bitmap.hasAlpha() ?
-                    Bitmap.CompressFormat.PNG : Bitmap.CompressFormat.JPEG;
+            Bitmap.CompressFormat compressFormat = bitmap.hasAlpha() ? Bitmap.CompressFormat.PNG : Bitmap.CompressFormat.JPEG;
 
             // Write to out put file
             boolean isOk = false;

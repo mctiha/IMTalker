@@ -16,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.common.R;
 import com.italker.common.widget.recycler.RecyclerAdapter;
 
@@ -307,9 +309,10 @@ public class GalleryView extends RecyclerView {
         protected void onBind(Image image) {
             Glide.with(getContext())
                     .load(image.path) // 加载路径
-                    .diskCacheStrategy(DiskCacheStrategy.NONE) // 不使用缓存，直接从原图加载
-                    .centerCrop() // 居中剪切
-                    .placeholder(R.color.grey_200) // 默认颜色
+                    .apply(new RequestOptions()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE) // 不使用缓存，直接从原图加载
+                            .centerCrop() // 居中剪切
+                            .placeholder(R.color.grey_200))
                     .into(mPic);
 
             mShade.setVisibility(image.isSelect ? VISIBLE : INVISIBLE);

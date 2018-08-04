@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
+import com.bumptech.glide.request.RequestOptions;
 import com.italker.R;
 import com.italker.common.face.Face;
 import com.italker.common.widget.recycler.RecyclerAdapter;
@@ -33,10 +34,11 @@ public class FaceHolder extends RecyclerAdapter.ViewHolder<Face.Bean> {
                 // face zip 包资源路径
                 || bean.preview instanceof String)) {
             Glide.with(itemView.getContext())
-                    .load(bean.preview)
                     .asBitmap()
-                    .format(DecodeFormat.PREFER_ARGB_8888) //设置解码格式8888，保证清晰度
-                    .placeholder(R.drawable.default_face)
+                    .load(bean.preview)
+                    .apply(new RequestOptions()
+                            .format(DecodeFormat.PREFER_ARGB_8888) //设置解码格式8888，保证清晰度
+                            .placeholder(R.drawable.default_face))
                     .into(mFace);
         }
     }

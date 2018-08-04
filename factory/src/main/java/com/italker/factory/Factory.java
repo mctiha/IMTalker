@@ -27,7 +27,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -39,7 +39,7 @@ public class Factory {
     // 单例模式
     private static final Factory instance;
     // 全局的线程池
-    private final Executor executor;
+    private final ExecutorService executor;
     // 全局的Gson
     private final Gson gson;
 

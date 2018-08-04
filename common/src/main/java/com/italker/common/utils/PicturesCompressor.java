@@ -30,8 +30,9 @@ public final class PicturesCompressor {
         File tmp;
         try {
             tmp = Glide.with(Application.getInstance())
+                    .asFile()
                     .load(path)
-                    .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                     .get();
             String absPath = tmp.getAbsolutePath();
             Log.d("PicturesCompressor", "loadWithGlideCache:" + absPath);

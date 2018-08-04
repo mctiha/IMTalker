@@ -1,6 +1,9 @@
 package com.italker.push.fragment.message;
 
 
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
@@ -12,9 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.italker.R;
 import com.italker.factory.model.db.Group;
 import com.italker.factory.model.db.view.MemberUserModel;
@@ -62,10 +65,10 @@ public class ChatGroupFragment extends ChatFragment<Group> implements ChatContra
 
         Glide.with(this)
                 .load(R.drawable.default_banner_group)
-                .centerCrop()
-                .into(new ViewTarget<CollapsingToolbarLayout, GlideDrawable>(mCollapsingLayout) {
+                .apply(new RequestOptions().centerCrop())
+                .into(new ViewTarget<CollapsingToolbarLayout, Drawable>(mCollapsingLayout) {
                     @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         this.view.setContentScrim(resource.getCurrent());
                     }
                 });
@@ -114,8 +117,7 @@ public class ChatGroupFragment extends ChatFragment<Group> implements ChatContra
         mCollapsingLayout.setTitle(group.getName());
         Glide.with(this)
                 .load(group.getPicture())
-                .centerCrop()
-                .placeholder(R.drawable.default_banner_group)
+                .apply(new RequestOptions().centerCrop().placeholder(R.drawable.default_banner_group))
                 .into(mHeader);
     }
 
@@ -133,9 +135,10 @@ public class ChatGroupFragment extends ChatFragment<Group> implements ChatContra
 
             Glide.with(this)
                     .load(member.portrait)
-                    .placeholder(R.drawable.default_portrait)
-                    .centerCrop()
-                    .dontAnimate()
+                    .apply(new RequestOptions()
+                            .placeholder(R.drawable.default_portrait)
+                            .centerCrop()
+                            .dontAnimate())
                     .into(p);
             // 个人界面信息查看
             p.setOnClickListener(new View.OnClickListener() {

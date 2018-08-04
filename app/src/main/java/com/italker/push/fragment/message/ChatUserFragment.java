@@ -1,5 +1,8 @@
 package com.italker.push.fragment.message;
 
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -8,9 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.italker.R;
 import com.italker.common.widget.PortraitView;
 import com.italker.factory.model.db.User;
@@ -48,10 +51,10 @@ public class ChatUserFragment extends ChatFragment<User> implements ChatContract
 
         Glide.with(this)
                 .load(R.drawable.default_banner_chat)
-                .centerCrop()
-                .into(new ViewTarget<CollapsingToolbarLayout, GlideDrawable>(mCollapsingLayout) {
+                .apply(new RequestOptions().centerCrop())
+                .into(new ViewTarget<CollapsingToolbarLayout, Drawable>(mCollapsingLayout) {
                     @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         this.view.setContentScrim(resource.getCurrent());
                     }
                 });

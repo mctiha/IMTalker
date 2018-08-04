@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 import com.common.R;
 import com.italker.common.model.Author;
 
@@ -37,6 +38,7 @@ public class PortraitView extends CircleImageView {
     }
 
 
+
     public void setup(RequestManager manager, String url) {
         setup(manager, R.drawable.default_portrait, url);
     }
@@ -52,9 +54,9 @@ public class PortraitView extends CircleImageView {
         }
 
         manager.load(url)
-                .placeholder(resourceId)
-                .centerCrop()
-                .dontAnimate() // CircleImageView 控件中不能使用渐变动画，会导致显示延迟
+                .apply(new RequestOptions().centerCrop()
+                        .dontAnimate() // CircleImageView 控件中不能使用渐变动画，会导致显示延迟
+                        .placeholder(resourceId))
                 .into(this);
 
     }

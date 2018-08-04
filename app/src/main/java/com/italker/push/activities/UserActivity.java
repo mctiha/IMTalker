@@ -4,16 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ViewTarget;
-import com.italker.common.app.BaseActivity;
+import com.bumptech.glide.request.transition.Transition;
 import com.italker.R;
+import com.italker.common.app.BaseActivity;
 import com.italker.push.fragment.user.UpdateInfoFragment;
 
 import net.qiujuer.genius.ui.compat.UiCompat;
@@ -56,10 +58,10 @@ public class UserActivity extends BaseActivity {
         // 初始化背景
         Glide.with(this)
                 .load(R.drawable.bg_src_tianjin)
-                .centerCrop() //居中剪切
-                .into(new ViewTarget<ImageView, GlideDrawable>(mBg) {
+                .apply(new RequestOptions().centerCrop()) //居中剪切
+                .into(new ViewTarget<ImageView, Drawable>(mBg) {
                     @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         // 拿到glide的Drawable
                         Drawable drawable = resource.getCurrent();
                         // 使用适配类进行包装

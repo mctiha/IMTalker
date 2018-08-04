@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.italker.common.app.Application;
 import com.italker.R;
+import com.italker.common.app.Application;
 import com.italker.push.fragment.media.GalleryFragment;
 
 import java.util.List;

@@ -34,16 +34,17 @@ ext{
     versionCode = 1
     versionName = "1.0.0"
 
-    supportVersion = "25.3.1"
+    supportVersion = "27.1.1"
+    constraint_layout = "1.1.2"
 
     butterknifeVersion = "8.5.1"
-    glideVersion = '3.7.0'
+    glideVersion = '4.7.1'
     circleimageviewVersion = '2.1.0'
     ucropVersion = "2.2.0-native"
     easyPMVersion = "0.3.0"
     ossVersion = '2.3.0'
     gsonVersion = '2.8.0'
-    retrofitVersion = '2.1.0'
+    retrofitVersion = '2.4.0'
     getuiVersion = '2.9.3.0'
     dbflowVersion = "4.0.0-beta7"
 

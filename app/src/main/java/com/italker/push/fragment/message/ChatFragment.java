@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.italker.R;
 import com.italker.common.app.Application;
 import com.italker.common.app.PresenterFragment;
@@ -60,6 +61,7 @@ public abstract class ChatFragment<InitModel>
 
     protected String mReceiverId;
     protected Adapter mAdapter;
+
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -312,7 +314,9 @@ public abstract class ChatFragment<InitModel>
     public void onAdapterDataChanged() {
         // 界面没有占位布局，Recycler是一直显示的，所有不需要做任何事情
 
-        mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
+        if (mAdapter.getItemCount() != 0){
+            mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
+        }
     }
 
     @Override
@@ -540,7 +544,7 @@ public abstract class ChatFragment<InitModel>
 
             Glide.with(ChatFragment.this)
                     .load(content)
-                    .fitCenter()
+                    .apply(new RequestOptions().fitCenter())
                     .into(mContent);
 
         }

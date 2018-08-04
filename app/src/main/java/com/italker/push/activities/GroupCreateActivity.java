@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.italker.R;
 import com.italker.common.app.Application;
 import com.italker.common.app.PresenterToolbarActivity;
@@ -128,9 +129,9 @@ public class GroupCreateActivity extends PresenterToolbarActivity<GroupCreateCon
         mPortraitPath = uri.getPath();
 
         Glide.with(this)
-                .load(uri)
                 .asBitmap()
-                .centerCrop()
+                .load(uri)
+                .apply(new RequestOptions().centerCrop())
                 .into(mPortrait);
     }
 

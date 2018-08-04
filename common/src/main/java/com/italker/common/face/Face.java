@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -18,9 +19,8 @@ import android.util.ArrayMap;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.common.R;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -200,17 +200,18 @@ public class Face {
     public static void inputFace(@NonNull final Context context, final Editable editable,
                                  final Face.Bean bean, final int size) {
         Glide.with(context)
-                .load(bean.preview)
                 .asBitmap()
+                .load(bean.preview)
                 .into(new SimpleTarget<Bitmap>(size, size) {
                     @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         Spannable spannable = new SpannableString(String.format("[%s]", bean.key));
                         ImageSpan span = new ImageSpan(context, resource, ImageSpan.ALIGN_BASELINE);
                         // 前后不关联
                         spannable.setSpan(span, 0, spannable.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         editable.append(spannable);
                     }
+
                 });
     }
 
@@ -295,11 +296,10 @@ public class Face {
 
             Glide.with(context)
                     .load(source)
-                    .fitCenter()
-                    .into(new SimpleTarget<GlideDrawable>(size, size) {
+                    .into(new SimpleTarget<Drawable>(size, size) {
 
                         @Override
-                        public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                             mDrawable = resource.getCurrent();
                             // 获取自测量高宽
                             int width = mDrawable.getIntrinsicWidth();
@@ -311,6 +311,7 @@ public class Face {
                             // 通知刷新
                             mView.invalidate();
                         }
+
                     });
         }
 

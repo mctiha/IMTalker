@@ -2,8 +2,10 @@ package com.italker.push.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,9 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.italker.R;
 import com.italker.common.app.BaseActivity;
 import com.italker.common.tools.ScreenUtils;
@@ -104,10 +106,10 @@ public class MainActivity extends BaseActivity implements
 
         Glide.with(this)
                 .load(R.drawable.bg_src_morning)
-                .centerCrop()
-                .into(new ViewTarget<View, GlideDrawable>(appbar) {
+                .apply(new RequestOptions().centerCrop())
+                .into(new ViewTarget<View, Drawable>(appbar) {
                     @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         this.view.setBackground(resource.getCurrent());
                     }
                 });
@@ -179,5 +181,9 @@ public class MainActivity extends BaseActivity implements
                 .setInterpolator(new AnticipateOvershootInterpolator(1))
                 .start();
     }
+
+
+
+
 
 }
